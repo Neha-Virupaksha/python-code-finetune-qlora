@@ -1,0 +1,6 @@
+{
+  "base_model_score": 0.6069,
+  "finetuned_model_score": 0.5384,
+  "improvement_pct": -11.28,
+  "n_examples": 50
+}

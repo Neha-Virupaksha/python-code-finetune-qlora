@@ -1,0 +1,871 @@
+{
+  "base": [
+    {
+      "instruction": "Create a data visualization in Python using Matplotlib that displays the total number of cases for coronavirus in different countries.",
+      "generated_code": "import matplotlib.pyplot as plt\n\n# Data\ncountries = [\"United States\", \"Russia\", \"Italy\", \"Spain\", \"Germany\"]\ncases = [212000, 180000, 105000, 90000, 70000]\n\n# Create bar chart\nplt.bar(countries, cases)\n\n# Add title and labels\nplt.title(\"Total Cases for Coronavirus by Country\")\nplt.xlabel(\"Country\")\nplt.ylabel(\"Number of Cases\")\n\n# Show the plot\nplt.show()",
+      "status": "success",
+      "error": null,
+      "required_libraries": [
+        "matplotlib"
+      ],
+      "used_libraries": [
+        "matplotlib"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Design a machine learning classifier using the scikit-learn library in Python that predicts whether someone is a male or female using features like height and age.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\n\n# Load the dataset\ndata = pd.read_csv('gender_data.csv')\n\n# Preprocess the data\nX = data[['height', 'age']]\ny = data['gender']\n\n# Split the dataset into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Scale the features\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\n# Create a logistic regression model\nmodel = LogisticRegression()\n\n# Train the model\nmodel.fit(X_train_scaled, y_train)\n\n# Make predictions on the test set\npredictions = model.predict(X_test_scaled)\n\n# Evaluate the model\naccuracy = model.score(X_test_scaled, y_test)\nprint(f'Model Accuracy: {accuracy:.2f}')",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'gender_data.csv'",
+      "required_libraries": [
+        "sklearn"
+      ],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Implement a Tensorflow 2.0 model in Python to classify MNIST handwritten digits.",
+      "generated_code": "import tensorflow as tf\nfrom tensorflow.keras import layers, models\n\n# Define the model architecture\nmodel = models.Sequential([\n    layers.Flatten(input_shape=(28, 28)),\n    layers.Dense(128, activation='relu'),\n    layers.Dropout(0.5),\n    layers.Dense(10, activation='softmax')\n])\n\n# Compile the model with appropriate loss function and optimizer\nmodel.compile(optimizer='adam',\n              loss='sparse_categorical_crossentropy',\n              metrics=['accuracy'])\n\n# Load the MNIST dataset\n(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()\n\n# Train the model on the training data\nmodel.fit(x_train, y_train, epochs=10)\n\n# Evaluate the model on the test data\ntest_loss, test_acc = model.evaluate(x_test, y_test)\nprint(f'Test accuracy: {test_acc}')",
+      "status": "timeout",
+      "error": "exceeded 8s",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a program in Python to solve this equation: X^2 - 6X + 9.",
+      "generated_code": "import math\n\n# Define the coefficients of the quadratic equation\na = 1\nb = -6\nc = 9\n\n# Calculate the discriminant\ndiscriminant = b**2 - 4*a*c\n\n# Check if the discriminant is positive, negative or zero\nif discriminant > 0:\n    # Two distinct real roots\n    root1 = (-b + math.sqrt(discriminant)) / (2*a)\n    root2 = (-b - math.sqrt(discriminant)) / (2*a)\n    print(\"The roots are:\", root1, \"and\", root2)\nelif discriminant == 0:\n    # One real root (repeated root)\n    root = -b / (2*a)\n    print(\"The root is:\", root)\nelse:\n    # Complex roots\n    real_part = -b / (2*a)\n    imaginary_part = math.sqrt(-discriminant) / (2*a)\n    print(\"The complex roots are:\", real_part, \"+ i*\", imaginary_part, \"and\", real_part, \"- i*\", imaginary_part)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a python code to sort an array of numbers in descending order.",
+      "generated_code": "def sort_descending(arr):\n    arr.sort(reverse=True)\n    return arr\n\n# Example usage\nnumbers = [5, 3, 8, 1, 9]\nsorted_numbers = sort_descending(numbers)\nprint(sorted_numbers)  # Output: [9, 8, 5, 3, 1]",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate code to generate a linear regression model in Python.",
+      "generated_code": "import numpy as np\nfrom sklearn.linear_model import LinearRegression\n\n# Generate some sample data\nX = np.random.rand(100, 1)\ny = 2 * X + 3 + np.random.randn(100)\n\n# Create and fit the linear regression model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Print the coefficients of the model\nprint(\"Coefficients:\", model.coef_)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a function for sorting an array of integers using Merge Sort in Python.",
+      "generated_code": "def merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n\n    mid = len(arr) // 2\n    left_half = arr[:mid]\n    right_half = arr[mid:]\n\n    left_sorted = merge_sort(left_half)\n    right_sorted = merge_sort(right_half)\n\n    return merge(left_sorted, right_sorted)\n\n\ndef merge(left, right):\n    merged_arr = []\n    i = j = 0\n\n    while i < len(left) and j < len(right):\n        if left[i] < right[j]:\n            merged_arr.append(left[i])\n            i += 1\n        else:\n            merged_arr.append(right[j])\n            j += 1\n\n    merged_arr.extend(left[i:])\n    merged_arr.extend(right[j:])\n\n    return merged_arr\n\n\narr = [8, 4, 6, 1]\nsorted_arr = merge_sort(arr)\nprint(sorted_arr)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate an array of unique random numbers in Python.",
+      "generated_code": "import random\n\ndef generate_unique_random_numbers(count):\n    if count <= 0:\n        return []\n    \n    # Generate a list of unique numbers from 1 to count\n    unique_numbers = list(range(1, count + 1))\n    \n    # Shuffle the list to ensure randomness\n    random.shuffle(unique_numbers)\n    \n    return unique_numbers\n\n# Example usage\nunique_numbers = generate_unique_random_numbers(5)\nprint(unique_numbers)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a code to generate a two-dimensional array with zeros shapes in Python",
+      "generated_code": "import numpy as np\n\nrow = 3\ncolumn = 3\n\n# Generate a two-dimensional array with zeros shapes\narray = np.zeros((row, column))\n\nprint(array)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a predictive model in Python to predict the number of employees will leave in a given year based on the age, job position and current salary.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error\n\n# Load your dataset\ndata = pd.read_csv('employee_turnover_data.csv')\n\n# Preprocess the data\ndata['Age'] = data['Age'].astype(int)\ndata['Salary'] = data['Salary'].astype(float)\n\n# Define features and target variable\nX = data[['Age', 'Job Position', 'Salary']]\ny = data['Turnover']\n\n# Split the data into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Create and train the linear regression model\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)\n\n# Make predictions on the test set\npredictions = model.predict(X_test)\n\n# Evaluate the model\nmse = mean_squared_error(y_test, predictions)\nprint(f'Mean Squared Error: {mse}')",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'employee_turnover_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a NLP model in Python to classify movie reviews from IMDb as either positive or negative.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.feature_extraction.text import CountVectorizer\nfrom sklearn.naive_bayes import MultinomialNB\nfrom sklearn.metrics import accuracy_score, classification_report\n\n# Load the dataset\ndata = pd.read_csv('movie_reviews.csv')\n\n# Split the data into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(data['review'], data['sentiment'], test_size=0.2, random_state=42)\n\n# Vectorize the text data\nvectorizer = CountVectorizer()\nX_train_vectorized = vectorizer.fit_transform(X_train)\nX_test_vectorized = vectorizer.transform(X_test)\n\n# Create a Naive Bayes classifier\nclassifier = MultinomialNB()\n\n# Train the classifier\nclassifier.fit(X_train_vectorized, y_train)\n\n# Make predictions on the test set\ny_pred = classifier.predict(X_test_vectorized)\n\n# Evaluate the model\naccuracy = accuracy_score(y_test, y_pred)\nprint(f'Accuracy: {accuracy:.2f}')\nprint(classification_report(y_test, y_pred))",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'movie_reviews.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a Python function that takes a list of dictionaries and counts the frequency of each unique element.",
+      "generated_code": "def count_element_frequency(data_list):\n    # Initialize an empty dictionary to store the frequency of elements\n    frequency_dict = {}\n    \n    # Iterate through each dictionary in the list\n    for item in data_list:\n        # Check if the key exists in the dictionary, if not, add it with a value of 1\n        if item in frequency_dict:\n            frequency_dict[item] += 1\n        else:\n            frequency_dict[item] = 1\n    \n    return frequency_dict\n\n# Example usage\ndata = [\n    {'name': 'Alice', 'age': 25},\n    {'name': 'Bob', 'age': 30},\n    {'name': 'Alice', 'age': 25},\n    {'name': 'Charlie', 'age': 35}\n]\n\nprint(count_element_frequency(data))",
+      "status": "runtime_error",
+      "error": "TypeError: unhashable type: 'dict'",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to detect the most frequently occurring element in a given array.",
+      "generated_code": "def find_most_frequent_element(arr):\n    frequency_dict = {}\n    for num in arr:\n        if num in frequency_dict:\n            frequency_dict[num] += 1\n        else:\n            frequency_dict[num] = 1\n    \n    max_frequency = max(frequency_dict.values())\n    most_frequent_elements = [num for num, freq in frequency_dict.items() if freq == max_frequency]\n    \n    return most_frequent_elements\n\n# Test the function with the provided input\narray = [1, 3, 1, 4, 5, 3, 4, 3]\nprint(find_most_frequent_element(array))  # Output: [3]",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a Python program to generate all the possible permutations of a given array.",
+      "generated_code": "def generate_permutations(arr):\n    if len(arr) == 0:\n        return [[]]\n    result = []\n    for i in range(len(arr)):\n        remaining_arr = arr[:i] + arr[i+1:]\n        for permutation in generate_permutations(remaining_arr):\n            result.append([arr[i]] + permutation)\n    return result\n\ninput_array = [1, 2, 3]\npermutations = generate_permutations(input_array)\nprint(permutations)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a python script that takes 2 arguments - an array and an integer - and prints the sum of the array multiplied by the integer.",
+      "generated_code": "The output should be `90`.\n\n### Explanation:\nThe function `multiply_sum` is defined to take two parameters: `arr` (the array) and `num` (the integer). It calculates the sum of all elements in the array using the built-in `sum()` function. Then it multiplies this sum by the given integer `num`. The result is printed as the output.\n\nIn the provided input, the array `[3, 5, 8]` has a sum of `16`, and when multiplied by the integer `5`, the result is `90`. This matches the expected output.",
+      "status": "syntax_error",
+      "error": "SyntaxError: invalid syntax (<generated>, line 1)",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Find the maximum value of a 10 element array in Python.",
+      "generated_code": "# Define the array\narray = [1, 7, 3, 4, 5, 9, 8, 0, 2, 6]\n\n# Find the maximum value using max()\nmax_value = max(array)\n\n# Print the result\nprint(\"The maximum value of the array is\", max_value)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create an ML algorithm in Python to identify fraudulent transactions in a dataset.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score, confusion_matrix\n\n# Load the dataset\ndata = pd.read_csv('fraud_transactions.csv')\n\n# Preprocess the data\nX = data.drop('is_fraud', axis=1)\ny = data['is_fraud']\n\n# Split the dataset into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Scale the features\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\n# Train the model\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train_scaled, y_train)\n\n# Make predictions on the test set\ny_pred = model.predict(X_test_scaled)\n\n# Evaluate the model\naccuracy = accuracy_score(y_test, y_pred)\nconfusion = confusion_matrix(y_test, y_pred)\n\nprint(f'Accuracy: {accuracy}')\nprint(f'Confusion Matrix:\\n{confusion}')",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'fraud_transactions.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Develop a machine learning model with Python to predict stock prices of a given company.",
+      "generated_code": "To develop a machine learning model for predicting stock prices, you can use the following steps:\n\n1. **Data Collection**: Gather historical stock price data from reliable sources such as Yahoo Finance or Alpha Vantage.\n2. **Data Preprocessing**: Clean and preprocess the data by handling missing values, outliers, and converting categorical variables into numerical ones.\n3. **Feature Selection**: Select relevant features that might influence stock prices, such as financial indicators, market trends, etc.\n4. **Model Selection**: Choose an appropriate machine learning algorithm for regression tasks, such as Linear Regression, Decision Trees, Random Forests, or Neural Networks.\n5. **Training the Model**: Split the dataset into training and testing sets. Train the selected model on the training set using appropriate hyperparameters.\n6. **Evaluation**: Evaluate the trained model on the test set using metrics like Mean Squared Error (MSE), Root Mean Squared Error (RMSE), or R-squared.\n7. **Prediction**: Use the trained model to make predictions on new stock price data.\n\nHere is a simple example of how you can implement this in Python using the `pandas`, `numpy`, `scikit-learn`, and `yfinance` libraries:\n\n```python\nimport pandas as pd\nimport numpy as np\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\nimport yfinance as yf\n\n# Step 1: Data",
+      "status": "syntax_error",
+      "error": "SyntaxError: invalid syntax (<generated>, line 1)",
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy",
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Design an algorithm in Python that takes an array of integers and returns an array with no repeating integers.",
+      "generated_code": "def remove_duplicates(arr):\n    # Create a set to store unique elements\n    unique_elements = set()\n    \n    # Iterate through the array and add elements to the set\n    for num in arr:\n        unique_elements.add(num)\n    \n    # Convert the set back to a list and return it\n    return list(unique_elements)\n\n# Example usage\narr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nprint(remove_duplicates(arr))  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a machine learning model in Python that predicts the type of animal based on certain features such as size, color, and behavior.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score\n\n# Load the dataset\ndata = pd.read_csv('animal_data.csv')\n\n# Preprocess the data\nX = data[['size', 'color', 'behavior']]\ny = data['type']\n\n# Split the data into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Scale the features\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\n# Train the model\nmodel = RandomForestClassifier(n_estimators=100, random_state=42)\nmodel.fit(X_train_scaled, y_train)\n\n# Make predictions\npredictions = model.predict(X_test_scaled)\n\n# Evaluate the model\naccuracy = accuracy_score(y_test, predictions)\nprint(f'Model Accuracy: {accuracy:.2f}')",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'animal_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a machine learning model in Python that predecits customer lifetime value given a customer's past transactions.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# Load the dataset\ndata = pd.read_csv('customer_transactions.csv')\n\n# Preprocess the data\n# Assuming 'transaction_amount' and 'frequency' are the relevant features\nX = data[['transaction_amount', 'frequency']]\ny = data['lifetime_value']\n\n# Split the data into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Create and train the linear regression model\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)\n\n# Make predictions on the test set\ny_pred = model.predict(X_test)\n\n# Evaluate the model\nmse = mean_squared_error(y_test, y_pred)\nr2 = r2_score(y_test, y_pred)\n\nprint(f'Mean Squared Error: {mse}')\nprint(f'R-squared Score: {r2}')",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'customer_transactions.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a document clustering program in Python that groups similar documents together.",
+      "generated_code": "import nltk\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.cluster import KMeans\n\n# Load the dataset\ndocuments = [\n    \"This is a sample document.\",\n    \"Another sample document with different words.\",\n    \"Yet another sample document with even more unique words.\",\n    # Add more documents as needed\n]\n\n# Preprocess the text data\nnltk.download('punkt')\nstop_words = set(nltk.corpus.stopwords.words('english'))\nprocessed_documents = []\nfor doc in documents:\n    tokens = nltk.word_tokenize(doc)\n    filtered_tokens = [token for token in tokens if token.isalpha() and token not in stop_words]\n    processed_documents.append(\" \".join(filtered_tokens))\n\n# Vectorize the text data\nvectorizer = TfidfVectorizer()\nX = vectorizer.fit_transform(processed_documents)\n\n# Apply K-means clustering\nnum_clusters = 3\nkmeans = KMeans(n_clusters=num_clusters, random_state=0)\ncluster_labels = kmeans.fit_predict(X)\n\n# Print the cluster labels\nprint(cluster_labels)",
+      "status": "runtime_error",
+      "error": "LookupError: \n**********************************************************************\n  Resource \u001b[93mstopwords\u001b[0m not found.\n  Please use the NLTK Downloader to obtain the resource:\n\n  \u001b[31m>>> import nltk\n  >>> nltk.download('stopwords')\n  \u001b[0m\n  For more information see: https://www.nltk.org/data.html\n\n  Attempted to load \u001b[93mcorpora/stopwords\u001b[0m\n\n  Searched in:\n    - '/root/nltk_data'\n    - '/usr/nltk_data'\n    - '/usr/share/nltk_data'\n    - '/usr/lib/nltk_data'\n    - '/usr/share/nltk_data'\n    - '/usr/local/share/nltk_data'\n    - '/usr/lib/nltk_data'\n    - '/usr/local/lib/nltk_data'\n**********************************************************************\n",
+      "required_libraries": [],
+      "used_libraries": [
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program for creating a histogram from a given dataset.",
+      "generated_code": "# Import necessary library\nimport matplotlib.pyplot as plt\n\ndef create_histogram(data):\n    \"\"\"\n    This function takes a list of data points (values) and creates a histogram.\n    \n    Parameters:\n    - data: List of integers representing the dataset.\n    \n    Returns:\n    None, but displays a histogram using matplotlib.\n    \"\"\"\n    # Create a histogram\n    plt.hist(data, bins=range(11), edgecolor='black')\n    \n    # Add title and labels\n    plt.title('Histogram of Dataset')\n    plt.xlabel('Value')\n    plt.ylabel('Frequency')\n    \n    # Display the histogram\n    plt.show()\n\n# Example usage\ndata = [2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ncreate_histogram(data)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "matplotlib"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a predictive model using machine learning techniques in Python that can predict the outcome of a future stock price given its historical data.",
+      "generated_code": "To generate a predictive model for predicting future stock prices, you can use the following steps:\n\n1. **Data Collection**: Gather historical stock data from reliable sources such as Yahoo Finance, Google Finance, or other financial APIs.\n2. **Data Preprocessing**: Clean and preprocess the data by handling missing values, encoding categorical variables, and scaling numerical features.\n3. **Feature Selection**: Identify the most relevant features that influence stock prices. This could include factors like market sentiment, company earnings, economic indicators, etc.\n4. **Model Selection**: Choose an appropriate machine learning algorithm for predicting stock prices. Common choices include Linear Regression, Decision Trees, Random Forests, Support Vector Machines (SVM), and Neural Networks.\n5. **Training the Model**: Split the preprocessed data into training and testing sets. Train the selected model on the training set to learn patterns and make predictions.\n6. **Evaluation**: Evaluate the performance of the trained model on the test set using metrics such as Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared.\n7. **Deployment**: Once the model is satisfactory, deploy it to production environments where it can be used to predict future stock prices.\n\nHere's a simple example of how you might implement this using Python and the `scikit-learn` library:\n\n```python\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom",
+      "status": "syntax_error",
+      "error": "SyntaxError: unterminated string literal (detected at line 11) (<generated>, line 11)",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to transform an input array of length 5 into a matrix of 3x3.",
+      "generated_code": "def transform_array_to_matrix(input_array):\n    # Initialize the matrix with zeros\n    matrix = [[0 for _ in range(3)] for _ in range(3)]\n    \n    # Fill the matrix with the input array elements\n    for i in range(len(input_array)):\n        matrix[i // 3][i % 3] = input_array[i]\n    \n    return matrix\n\n# Example usage\ninput_array = [1, 2, 3, 4, 5]\noutput_matrix = transform_array_to_matrix(input_array)\nprint(output_matrix)  # Output: [[1, 2, 3], [4, 5, 0]]",
+      "status": "success",
+      "error": null,
+      "required_libraries": [
+        "numpy"
+      ],
+      "used_libraries": [],
+      "library_match": false
+    },
+    {
+      "instruction": "Design a neural network application in Python to predict the price of real estate.",
+      "generated_code": "The response should be a Python code snippet that includes the necessary imports, model definition, and training process. The code should also include a function to make predictions on new data.\n\n```python\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom tensorflow.keras.models import Sequential\nfrom tensorflow.keras.layers import Dense\n\n# Load the dataset\nproperties = pd.read_csv('Properties.csv')\n\n# Preprocess the data\nX = properties[['size', 'location']]\ny = properties['price']\n\n# Split the dataset into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Scale the features\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\n# Define the model\nmodel = Sequential([\n    Dense(32, input_shape=(X_train_scaled.shape[1],), activation='relu'),\n    Dense(64, activation='relu'),\n    Dense(1, activation='linear')\n])\n\n# Compile the model\nmodel.compile(optimizer='adam', loss='mean_squared_error')\n\n# Train the model\nhistory = model.fit(X_train_scaled, y_train, epochs=50, batch_size=32, validation_data=(X_test_scaled, y_test))\n\n# Function to make predictions\ndef predict_price(location, size):\n    # Prepare",
+      "status": "syntax_error",
+      "error": "SyntaxError: invalid syntax (<generated>, line 1)",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a function named `parse_file` that takes a parameter named `datafile`. The function should read the input `datafile` line by line, and for the first 10 lines (not including the header) split each line on \",\" and then for each line, create a dictionary where the key is the header title of the field, and the value is the value of that field in the row. The function should return a list of dictionaries, each data line in the file being a single list entry. Field names and values should not contain extra whitespace, like spaces or newline characters. You can use the Python string method `strip()` to remove the extra whitespace. The returned list should have 10 entries. Finally, write a test function named `test` that tests the implementation of the `parse_file` function.",
+      "generated_code": "def parse_file(datafile):\n    import csv\n\n    with open(datafile, mode='r') as file:\n        reader = csv.reader(file)\n        headers = next(reader)  # Read the header row\n        parsed_data = []\n\n        for i, row in enumerate(reader):\n            if i < 10:  # Skip the header and only process the first 10 rows\n                parsed_data.append({header.strip(): value.strip() for header, value in zip(headers, row)})\n    \n    return parsed_data\n\ndef test():\n    # Test data\n    test_data = \"name,age,city\\nAlice,30,New York\\nBob,25,Los Angeles\\nCharlie,40,Chicago\"\n    \n    # Expected output\n    expected_output = [\n        {'name': 'Alice', 'age': '30', 'city': 'New York'},\n        {'name': 'Bob', 'age': '25', 'city': 'Los Angeles'},\n        {'name': 'Charlie', 'age': '40', 'city': 'Chicago'}\n    ]\n    \n    # Actual output\n    actual_output = parse_file(test_data)\n    \n    # Check if the actual output matches the expected output\n    assert actual_output == expected_output, f\"Expected {expected_output}, but got {actual_output}\"\n    print(\"Test passed!\")\n\n# Run the test function\ntest()",
+      "status": "runtime_error",
+      "error": "NameError: name 'open' is not defined",
+      "required_libraries": [
+        "numpy"
+      ],
+      "used_libraries": [],
+      "library_match": false
+    },
+    {
+      "instruction": "Visualize a dataset containing the exam scores of 3 classes (class A, B, and C) in the form of a bar chart using Matplotlib and Python.",
+      "generated_code": "import matplotlib.pyplot as plt\n\n# Data for each class\nscores_A = [85, 75, 95]\nscores_B = [89, 73, 72]\nscores_C = [82, 81, 89]\n\n# Create a bar chart\nplt.bar(['Class A', 'Class B', 'Class C'], [scores_A, scores_B, scores_C], color=['blue', 'green', 'red'])\n\n# Add labels and title\nplt.xlabel('Classes')\nplt.ylabel('Exam Scores')\nplt.title('Exam Scores by Class')\n\n# Show the plot\nplt.show()",
+      "status": "runtime_error",
+      "error": "TypeError: only length-1 arrays can be converted to Python scalars",
+      "required_libraries": [
+        "matplotlib"
+      ],
+      "used_libraries": [
+        "matplotlib"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Generate an algorithm in Python that can classify any dataset having 3 classes.",
+      "generated_code": "from sklearn.datasets import make_classification\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.naive_bayes import GaussianNB\n\n# Generate some sample data\nX, y = make_classification(n_samples=100, n_features=20, n_classes=3, random_state=42)\n\n# Split the data into training and testing sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Scale the features\nscaler = StandardScaler()\nX_train = scaler.fit_transform(X_train)\nX_test = scaler.transform(X_test)\n\n# Create a Gaussian Naive Bayes classifier\nclf = GaussianNB()\n\n# Train the model on the training data\nclf.fit(X_train, y_train)\n\n# Make predictions on the testing data\npredictions = clf.predict(X_test)\n\nprint(\"Predictions:\", predictions)",
+      "status": "runtime_error",
+      "error": "ValueError: n_classes(3) * n_clusters_per_class(2) must be smaller or equal 2**n_informative(2)=4",
+      "required_libraries": [],
+      "used_libraries": [
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a function in Python to compute the sum of all elements in a given 2-dimensional array.",
+      "generated_code": "def sum_of_elements(matrix):\n    total_sum = 0.0\n    for row in matrix:\n        for element in row:\n            total_sum += element\n    return total_sum\n\n# Example usage\nmatrix = [[2, 3], [2, 5], [5, 6], [4, 5]]\nresult = sum_of_elements(matrix)\nprint(result)  # Output: 27.0",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write an algorithm in Python to solve the given binary search problem",
+      "generated_code": "def binary_search(arr, x):\n    low = 0\n    high = len(arr) - 1\n    \n    while low <= high:\n        mid = (low + high) // 2\n        \n        if arr[mid] == x:\n            return mid\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            high = mid - 1\n            \n    return -1",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to create a KMeans model and cluster iris data into 3 clusters.",
+      "generated_code": "import pandas as pd\nfrom sklearn.cluster import KMeans\n\n# Load the iris dataset\niris = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', names=['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species'])\n\n# Create a KMeans model with 3 clusters\nkmeans = KMeans(n_clusters=3, random_state=0)\n\n# Fit the model to the iris data\nkmeans.fit(iris[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']])\n\n# Predict the cluster labels for each sample in the iris dataset\ncluster_labels = kmeans.predict(iris[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']])\n\n# Add the cluster labels to the iris dataframe\niris['cluster'] = cluster_labels\n\n# Print the first few rows of the iris dataframe\nprint(iris.head())",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to find the closest next lower value of a given number in an array of integers.",
+      "generated_code": "def find_closest_lower(arr, target):\n    for num in arr:\n        if num <= target:\n            return num\n    return None\n\n# Test the function\narr = [1, 3, 8, 9, 10, 11, 12]\ntarget = 7\nprint(f\"The closest next lower value of {target} is {find_closest_lower(arr, target)}\")",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Design a Python program to read in a integer array and find the second largest element in the array.",
+      "generated_code": "def find_second_largest(arr):\n    # Sort the array in descending order\n    arr.sort(reverse=True)\n    # Return the second element after sorting\n    return arr[1]\n\n# Test the function with the provided input\ninput_array = [3, 8, 4, 5, 7, 6]\nsecond_largest_element = find_second_largest(input_array)\nprint(f\"The second largest element in the array is {second_largest_element}.\")",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a Python function that takes a dataframe and returns a new dataframe with only the columns that start with the letter 'A'.",
+      "generated_code": "import pandas as pd\n\ndef filter_columns_starting_with_a(df):\n    \"\"\"\n    This function filters out columns from a given DataFrame that start with the letter 'A'.\n    \n    Parameters:\n    df (pd.DataFrame): The input DataFrame.\n    \n    Returns:\n    pd.DataFrame: A new DataFrame containing only the columns starting with 'A'.\n    \"\"\"\n    # Filter columns where column name starts with 'A'\n    filtered_df = df.filter(regex='^A')\n    return filtered_df\n\n# Example usage\nif __name__ == \"__main__\":\n    data = {\n        'Alice': [1, 2],\n        'Bob': [3, 4],\n        'Charlie': [5, 6],\n        'David': [7, 8]\n    }\n    df = pd.DataFrame(data)\n    result = filter_columns_starting_with_a(df)\n    print(result)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [
+        "pandas"
+      ],
+      "used_libraries": [
+        "pandas"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Write a Python program to optimize the given array such that its elements are in the range of 0 to 100.",
+      "generated_code": "def optimize_array(arr):\n    min_val = min(arr)\n    max_val = max(arr)\n    normalized_arr = [(x - min_val) / (max_val - min_val) * 100 for x in arr]\n    return normalized_arr\n\ninput_arr = [3, 105, -10, 35, 120]\noptimized_arr = optimize_array(input_arr)\nprint(\"The optimized array is\", optimized_arr)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a deep learning algorithm in Python to classify emails as spam or not spam.",
+      "generated_code": "To create a deep learning algorithm for classifying emails as spam or not spam, you can use the following steps:\n\n1. **Data Collection**: Gather a dataset of emails labeled as spam or non-spam. You can use public datasets like `spamassassin` or build your own dataset using email data from various sources.\n\n2. **Preprocessing**:\n   - Convert text data into numerical vectors.\n   - Tokenize the text data.\n   - Remove stop words and punctuation.\n   - Vectorize the text data (e.g., using `CountVectorizer` or `TfidfVectorizer`).\n\n3. **Model Selection**:\n   - Choose an appropriate model architecture for classification tasks. Common choices include:\n     - **Logistic Regression**\n     - **Support Vector Machines (SVM)**\n     - **Neural Networks** (e.g., Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNNs))\n     - **Deep Learning Models** (e.g., Long Short-Term Memory (LSTM), Gated Recurrent Units (GRUs))\n\n4. **Training the Model**:\n   - Split the dataset into training and testing sets.\n   - Train the model on the training set using the chosen model architecture.\n   - Use cross-validation techniques to evaluate the model's performance.\n\n5. **Evaluation**:\n   - Evaluate the trained model on the test set using metrics such as accuracy, precision, recall, F1-score, etc.\n   - Fine",
+      "status": "syntax_error",
+      "error": "SyntaxError: unterminated string literal (detected at line 21) (<generated>, line 21)",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Develop a Python program that takes an array of integers and returns the largest element.",
+      "generated_code": "The largest element in the given array is 10.\n\n### Explanation:\nThe provided code snippet defines a function `find_largest` that iterates through the input list `arr` and keeps track of the maximum value found. It then returns this maximum value. The example usage demonstrates how to call this function with the input `[2, 4, 8, 9, 10]`, which outputs \"The largest element in the given array is 10.\" This solution efficiently finds the largest element by comparing each element in the list once.",
+      "status": "syntax_error",
+      "error": "SyntaxError: invalid syntax (<generated>, line 1)",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Contruct a python program that sorts an array of strings using BubbleSort algorithm.",
+      "generated_code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\narr = [\"Hello\", \"World\", \"Boo\", \"Yay\"]\nsorted_arr = bubble_sort(arr)\nprint(sorted_arr)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a program in Python that removes duplicates from a given array.",
+      "generated_code": "def remove_duplicates(arr):\n    return list(set(arr))\n\ninput_array = [1, 1, 2, 3, 4, 5, 5, 5]\noutput_array = remove_duplicates(input_array)\nprint(output_array)  # Output: [1, 2, 3, 4, 5]",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    }
+  ],
+  "finetuned": [
+    {
+      "instruction": "Create a data visualization in Python using Matplotlib that displays the total number of cases for coronavirus in different countries.",
+      "generated_code": "import matplotlib.pyplot as plt\n\ndata = [['United States', 212000], ['Russia', 180000], ['Italy', 105000], ['Spain', 90000], ['Germany', 70000]]\nlabels = [country[0] for country in data]\nvalues = [country[1] for country in data]\n\nplt.bar(labels, values)\nplt.title('Total Number of Cases for Coronavirus')\nplt.xlabel('Country')\nplt.ylabel('Number of Cases')\n\nplt.show()",
+      "status": "success",
+      "error": null,
+      "required_libraries": [
+        "matplotlib"
+      ],
+      "used_libraries": [
+        "matplotlib"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Design a machine learning classifier using the scikit-learn library in Python that predicts whether someone is a male or female using features like height and age.",
+      "generated_code": "import numpy as np\nfrom sklearn.svm import SVC\n\n# Define the features and labels\nX = np.array([[1.75, 20], [1.85, 30], [1.95, 40]])\ny = np.array([0, 1, 0])\n\n# Create an SVM model\nmodel = SVC(kernel='linear')\n\n# Train the model\nmodel.fit(X, y)\n\n# Make predictions\npredictions = model.predict([[1.8, 25]])\n\nprint(predictions)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [
+        "sklearn"
+      ],
+      "used_libraries": [
+        "numpy",
+        "sklearn"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Implement a Tensorflow 2.0 model in Python to classify MNIST handwritten digits.",
+      "generated_code": "import tensorflow as tf\nfrom tensorflow.keras import datasets, layers, models\n\n# Load the data\n(train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()\n\n# Preprocess the data\ntrain_images = train_images.reshape((60000, 28, 28, 1))\ntrain_images = train_images / 255.0\ntest_images = test_images.reshape((10000, 28, 28, 1))\ntest_images = test_images / 255.0\n\n# Build the model\nmodel = models.Sequential()\nmodel.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))\nmodel.add(layers.MaxPooling2D((2, 2)))\nmodel.add(layers.Conv2D(64, (3, 3), activation='relu'))\nmodel.add(layers.MaxPooling2D((2, 2)))\nmodel.add(layers.Flatten())\nmodel.add(layers.Dense(64, activation='relu'))\nmodel.add(layers.Dense(10))\n\n# Compile and fit the model\nmodel.compile(optimizer='adam',\n              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),\n              metrics=['accuracy'])\nmodel.fit(train_images, train_labels, epochs=5)\n\n# Evaluate the model\ntest_loss, test_acc = model.evaluate(test_images, test_labels)",
+      "status": "timeout",
+      "error": "exceeded 8s",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a program in Python to solve this equation: X^2 - 6X + 9.",
+      "generated_code": "import numpy as np\n\n# Define the coefficients\na = 1\nb = -6\nc = 9\n\n# Calculate the discriminant\ndiscriminant = b**2 - 4*a*c\n\n# Calculate the two solutions\nx1 = (-b + np.sqrt(discriminant)) / (2*a)\nx2 = (-b - np.sqrt(discriminant)) / (2*a)\n\nprint(\"The solutions are:\", x1, \"and\", x2)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a python code to sort an array of numbers in descending order.",
+      "generated_code": "def sort_descending(arr):\n    arr.sort(reverse=True)\n    return arr",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate code to generate a linear regression model in Python.",
+      "generated_code": "import numpy as np\nfrom sklearn.linear_model import LinearRegression\n\n# Create the data\nX = np.array([[1, 2], [3, 4], [5, 6]])\ny = np.array([7, 8, 9])\n\n# Create and fit the model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Print the coefficients\nprint(model.coef_)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a function for sorting an array of integers using Merge Sort in Python.",
+      "generated_code": "def merge_sort(arr):\n    if len(arr) > 1:\n        mid = len(arr)//2\n        L = arr[:mid]\n        R = arr[mid:]\n\n        merge_sort(L)\n        merge_sort(R)\n\n        i = j = k = 0\n\n        while i < len(L) and j < len(R):\n            if L[i] < R[j]:\n                arr[k] = L[i]\n                i += 1\n            else:\n                arr[k] = R[j]\n                j += 1\n            k += 1\n\n        while i < len(L):\n            arr[k] = L[i]\n            i += 1\n            k += 1\n\n        while j < len(R):\n            arr[k] = R[j]\n            j += 1\n            k += 1\n\narr = [8, 4, 6, 1]\nmerge_sort(arr)\nprint(\"Sorted array is:\", arr)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate an array of unique random numbers in Python.",
+      "generated_code": "import random\n\ndef generate_unique_random_numbers(n):\n    # Create a list of all possible numbers\n    numbers = [i for i in range(1, n+1)]\n    \n    # Shuffle the list to get unique numbers\n    random.shuffle(numbers)\n    \n    return numbers",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a code to generate a two-dimensional array with zeros shapes in Python",
+      "generated_code": "import numpy as np\n\nrow = 3\ncolumn = 3\n\narray = np.zeros((row, column))\nprint(array)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a predictive model in Python to predict the number of employees will leave in a given year based on the age, job position and current salary.",
+      "generated_code": "import pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\n# Load data\ndata = pd.read_csv('employee_data.csv')\n\n# Split into features and target\nX = data[['age', 'job_position', 'current_salary']]\ny = data['leaves']\n\n# Create and train model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Make predictions\npredictions = model.predict(X)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'employee_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a NLP model in Python to classify movie reviews from IMDb as either positive or negative.",
+      "generated_code": "import pandas as pd\nfrom sklearn.feature_extraction.text import CountVectorizer\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import MultinomialNB\n\n# Load the data\ndata = pd.read_csv('movie_reviews.csv')\n\n# Split into training and test sets\nX_train, X_test, y_train, y_test = train_test_split(data['review'], data['label'], random_state=0)\n\n# Create the vectorizer\nvectorizer = CountVectorizer()\n\n# Fit and transform the training data\nX_train_vectorized = vectorizer.fit_transform(X_train)\n\n# Transform the test data\nX_test_vectorized = vectorizer.transform(X_test)\n\n# Train the model\nmodel = MultinomialNB()\nmodel.fit(X_train_vectorized, y_train)\n\n# Evaluate the model\nscore = model.score(X_test_vectorized, y_test)\nprint(score)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'movie_reviews.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a Python function that takes a list of dictionaries and counts the frequency of each unique element.",
+      "generated_code": "def count_frequency(list_of_dicts):\n    freq_dict = {}\n    for dict in list_of_dicts:\n        for key, value in dict.items():\n            if value not in freq_dict:\n                freq_dict[value] = 1\n            else:\n                freq_dict[value] += 1\n    return freq_dict",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to detect the most frequently occurring element in a given array.",
+      "generated_code": "def find_most_frequent_element(arr):\n    count_dict = {}\n    for num in arr:\n        if num not in count_dict:\n            count_dict[num] = 0\n        count_dict[num] += 1\n\n    max_count = 0\n    most_frequent_num = None\n    for key, value in count_dict.items():\n        if value > max_count:\n            max_count = value\n            most_frequent_num = key\n    \n    return most_frequent_num",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a Python program to generate all the possible permutations of a given array.",
+      "generated_code": "def permute(arr):\n    if len(arr) == 0: \n        return [[]] \n  \n    result = [] \n    for i in range(len(arr)): \n        m = arr[i] \n        remArr = arr[:i] + arr[i+1:] \n        for p in permute(remArr): \n            result.append([m] + p) \n  \n    return result\n  \nprint(permute([1, 2, 3]))",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a python script that takes 2 arguments - an array and an integer - and prints the sum of the array multiplied by the integer.",
+      "generated_code": "def multiply_sum(arr, num):\n    return sum([x * num for x in arr])\n\narr = [3, 5, 8]\nnum = 5\nprint(multiply_sum(arr, num))",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Find the maximum value of a 10 element array in Python.",
+      "generated_code": "def find_max(array):\n    max_val = array[0]\n    for i in range(1, len(array)):\n        if array[i] > max_val:\n            max_val = array[i]\n    return max_val\n\nmax_value = find_max(array)\nprint(max_value)",
+      "status": "runtime_error",
+      "error": "NameError: name 'array' is not defined",
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create an ML algorithm in Python to identify fraudulent transactions in a dataset.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\n# Load the data\ndata = pd.read_csv('fraud_data.csv')\n\n# Split into features and labels\nX = data.drop(['is_fraud'], axis=1)\ny = data['is_fraud']\n\n# Split into training and test sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Create and fit the model\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\n\n# Evaluate the model\nscore = model.score(X_test, y_test)\nprint(score)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'fraud_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Develop a machine learning model with Python to predict stock prices of a given company.",
+      "generated_code": "import pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\n# Load the data\ndata = pd.read_csv('stock_data.csv')\n\n# Split the data into features and labels\nX = data.drop(['Close'], axis=1)\ny = data['Close']\n\n# Create and train the model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Make predictions\npredictions = model.predict(X)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'stock_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Design an algorithm in Python that takes an array of integers and returns an array with no repeating integers.",
+      "generated_code": "def remove_duplicates(arr):\n    result = []\n    for num in arr:\n        if num not in result:\n            result.append(num)\n    return result",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a machine learning model in Python that predicts the type of animal based on certain features such as size, color, and behavior.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neighbors import KNeighborsClassifier\n\n# Load data\ndata = pd.read_csv('animal_data.csv')\n\n# Split into training and test sets\nX_train, X_test, y_train, y_test = train_test_split(data.drop(['type'], axis=1), \n                                                    data['type'], test_size=0.2)\n\n# Scale data\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\n# Train model\nmodel = KNeighborsClassifier(n_neighbors=3)\nmodel.fit(X_train_scaled, y_train)\n\n# Evaluate model\nscore = model.score(X_test_scaled, y_test)\nprint(score)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'animal_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a machine learning model in Python that predecits customer lifetime value given a customer's past transactions.",
+      "generated_code": "import pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\n# Load the data\ndata = pd.read_csv('customer_data.csv')\n\n# Split the data into features and labels\nX = data.drop(columns=['lifetime_value'])\ny = data['lifetime_value']\n\n# Create and train the model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Make predictions\npredictions = model.predict(X)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'customer_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a document clustering program in Python that groups similar documents together.",
+      "generated_code": "import nltk\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.cluster import KMeans\n\n# Load the dataset\ndocuments = ['This is a sample document', 'Another sample document', 'Yet another sample document']\n\n# Create TF-IDF vectorizer\nvectorizer = TfidfVectorizer()\nX = vectorizer.fit_transform(documents)\n\n# Create K-means model\nkmeans = KMeans(n_clusters=2, random_state=0).fit(X)\n\n# Print cluster labels\nprint(kmeans.labels_)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program for creating a histogram from a given dataset.",
+      "generated_code": "import matplotlib.pyplot as plt\n\n# Dataset\ndata = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ncount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\n# Create the histogram\nplt.hist(data, bins=range(11), weights=count)\n\n# Add title and labels\nplt.title('Histogram of Data')\nplt.xlabel('Data Values')\nplt.ylabel('Frequency')\n\n# Show the plot\nplt.show()",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "matplotlib"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a predictive model using machine learning techniques in Python that can predict the outcome of a future stock price given its historical data.",
+      "generated_code": "import pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\n# Load the dataset\ndata = pd.read_csv('stock_data.csv')\n\n# Split the dataset into features and labels\nX = data.drop(['price'], axis=1)\ny = data['price']\n\n# Create and train the model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Make predictions\npredictions = model.predict(X)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'stock_data.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to transform an input array of length 5 into a matrix of 3x3.",
+      "generated_code": "import numpy as np\n\narr = [1, 2, 3, 4, 5]\nmatrix = np.array(arr).reshape(3, 2)\nprint(matrix)",
+      "status": "runtime_error",
+      "error": "ValueError: cannot reshape array of size 5 into shape (3,2)",
+      "required_libraries": [
+        "numpy"
+      ],
+      "used_libraries": [
+        "numpy"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Design a neural network application in Python to predict the price of real estate.",
+      "generated_code": "import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom keras.models import Sequential\nfrom keras.layers import Dense, Dropout\n\n# Load data\ndata = pd.read_csv('properties.csv')\n\n# Split into features and labels\nX = data.drop(['price'], axis=1)\ny = data['price']\n\n# Split into training and test sets\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Create model\nmodel = Sequential()\nmodel.add(Dense(64, input_dim=X.shape[1], activation='relu'))\nmodel.add(Dropout(0.5))\nmodel.add(Dense(32, activation='relu'))\nmodel.add(Dropout(0.5))\nmodel.add(Dense(1))\n\n# Compile model\nmodel.compile(loss='mean_squared_error', optimizer='adam')\n\n# Train model\nmodel.fit(X_train, y_train, epochs=100, batch_size=32, validation_data=(X_test, y_test))",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'properties.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a function named `parse_file` that takes a parameter named `datafile`. The function should read the input `datafile` line by line, and for the first 10 lines (not including the header) split each line on \",\" and then for each line, create a dictionary where the key is the header title of the field, and the value is the value of that field in the row. The function should return a list of dictionaries, each data line in the file being a single list entry. Field names and values should not contain extra whitespace, like spaces or newline characters. You can use the Python string method `strip()` to remove the extra whitespace. The returned list should have 10 entries. Finally, write a test function named `test` that tests the implementation of the `parse_file` function.",
+      "generated_code": "import csv\n\ndef parse_file(datafile):\n    \"\"\"Parses a CSV file into a list of dictionaries\"\"\"\n    # Open the file\n    with open(datafile, 'r') as f:\n        reader = csv.reader(f)\n        \n        # Skip the header\n        next(reader)\n        \n        # Create an empty list to store the dictionaries\n        data = []\n        \n        # Loop through the rows\n        for i, row in enumerate(reader):\n            if i < 10:\n                # Split the row on \",\"\n                row = [x.strip() for x in row]\n                \n                # Create a dictionary with the headers as keys\n                d = {header: value for header, value in zip(headers, row)}\n                \n                # Add the dictionary to the list\n                data.append(d)\n    \n    return data\n\n# Test function\ndef test():\n    data = parse_file('data.csv')\n    assert len(data) == 10\n    assert data[0]['Name'] == 'John Doe'\n    assert data[0]['Age'] == '30'\n    print(\"All tests passed!\")\n\nif __name__ == '__main__':\n    test()",
+      "status": "runtime_error",
+      "error": "NameError: name 'open' is not defined",
+      "required_libraries": [
+        "numpy"
+      ],
+      "used_libraries": [],
+      "library_match": false
+    },
+    {
+      "instruction": "Visualize a dataset containing the exam scores of 3 classes (class A, B, and C) in the form of a bar chart using Matplotlib and Python.",
+      "generated_code": "import matplotlib.pyplot as plt\n\n# Data\ndata = [85, 75, 95, 89, 73, 72, 82, 81, 89]\n\n# Create bar chart\nplt.bar(['A', 'B', 'C'], data)\n\n# Add title and labels\nplt.title('Exam Scores')\nplt.xlabel('Classes')\nplt.ylabel('Scores')\n\n# Show plot\nplt.show()",
+      "status": "runtime_error",
+      "error": "ValueError: shape mismatch: objects cannot be broadcast to a single shape.  Mismatch is between arg 0 with shape (3,) and arg 1 with shape (9,).",
+      "required_libraries": [
+        "matplotlib"
+      ],
+      "used_libraries": [
+        "matplotlib"
+      ],
+      "library_match": true
+    },
+    {
+      "instruction": "Generate an algorithm in Python that can classify any dataset having 3 classes.",
+      "generated_code": "import numpy as np\nfrom sklearn.svm import SVC\n\ndef classify_data(X, y):\n    # Create a Support Vector Classifier object\n    clf = SVC(kernel='linear', C=1.0)\n    \n    # Fit the model to the data\n    clf.fit(X, y)\n    \n    return clf",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a function in Python to compute the sum of all elements in a given 2-dimensional array.",
+      "generated_code": "def sum_2d_array(arr):\n    total = 0\n    for row in arr:\n        for element in row:\n            total += element\n    return total\n\narr = [[2, 3], [2, 5], [5, 6], [4, 5]]\nprint(sum_2d_array(arr))",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write an algorithm in Python to solve the given binary search problem",
+      "generated_code": "def binary_search(arr, x): \n    low = 0\n    high = len(arr) - 1\n    mid = 0\n  \n    while low <= high: \n  \n        mid = (high + low) // 2\n  \n        # Check if x is present at middle itself \n        if arr[mid] == x: \n            return mid \n  \n        # If x is greater than mid, then it can only be present in right subarray \n        elif arr[mid] < x: \n            low = mid + 1\n  \n        # Else the element can only be present in left subarray \n        else: \n            high = mid - 1\n  \n    # If we reach here, then the element was not present \n    return -1",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to create a KMeans model and cluster iris data into 3 clusters.",
+      "generated_code": "from sklearn.cluster import KMeans\nimport pandas as pd\n\n# Load the dataset\ndata = pd.read_csv('iris.csv')\n\n# Create the KMeans model with 3 clusters\nkmeans = KMeans(n_clusters=3, random_state=0)\n\n# Fit the model to the data\nkmeans.fit(data)\n\n# Get the labels for each point in the dataset\nlabels = kmeans.labels_\n\n# Print the labels\nprint(labels)",
+      "status": "runtime_error",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'iris.csv'",
+      "required_libraries": [],
+      "used_libraries": [
+        "pandas",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Write a Python program to find the closest next lower value of a given number in an array of integers.",
+      "generated_code": "def closest_lower(arr, num):\n    min_diff = float('inf')\n    result = None\n    for i in range(len(arr)):\n        diff = abs(num - arr[i])\n        if diff < min_diff:\n            min_diff = diff\n            result = arr[i]\n    return result\n\narr = [1, 3, 8, 9, 10, 11, 12]\nnum = 7\nprint(closest_lower(arr, num))",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Design a Python program to read in a integer array and find the second largest element in the array.",
+      "generated_code": "def second_largest(arr):\n    max1 = -float('inf')\n    max2 = -float('inf')\n\n    for i in arr:\n        if i > max1:\n            max2 = max1\n            max1 = i\n        elif i > max2 and i != max1:\n            max2 = i\n\n    return max2",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Generate a Python function that takes a dataframe and returns a new dataframe with only the columns that start with the letter 'A'.",
+      "generated_code": "def get_columns_starting_with_a(df):\n    return df.filter(regex='^A')",
+      "status": "success",
+      "error": null,
+      "required_libraries": [
+        "pandas"
+      ],
+      "used_libraries": [],
+      "library_match": false
+    },
+    {
+      "instruction": "Write a Python program to optimize the given array such that its elements are in the range of 0 to 100.",
+      "generated_code": "def optimize_array(arr):\n    min_val = min(arr)\n    max_val = max(arr)\n\n    # Normalize the array\n    normalized_arr = [(x-min_val)/(max_val-min_val) * 100 for x in arr]\n    \n    return normalized_arr\n\narr = [3, 105, -10, 35, 120]\noptimized_arr = optimize_array(arr)\nprint(optimized_arr)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a deep learning algorithm in Python to classify emails as spam or not spam.",
+      "generated_code": "import numpy as np\nfrom sklearn.feature_extraction.text import CountVectorizer\nfrom sklearn.naive_bayes import MultinomialNB\n\n# Load the data\nX_train, y_train = load_data('spam.csv')\nX_test, y_test = load_data('spam-test.csv')\n\n# Create the vectorizer and fit it on the training data\nvectorizer = CountVectorizer()\nvectorizer.fit(X_train)\n\n# Transform the training and test data into feature vectors\nX_train_vectorized = vectorizer.transform(X_train)\nX_test_vectorized = vectorizer.transform(X_test)\n\n# Train the model\nmodel = MultinomialNB()\nmodel.fit(X_train_vectorized, y_train)\n\n# Evaluate the model\naccuracy = model.score(X_test_vectorized, y_test)\nprint(\"Model accuracy: \", accuracy)",
+      "status": "runtime_error",
+      "error": "NameError: name 'load_data' is not defined",
+      "required_libraries": [],
+      "used_libraries": [
+        "numpy",
+        "sklearn"
+      ],
+      "library_match": null
+    },
+    {
+      "instruction": "Develop a Python program that takes an array of integers and returns the largest element.",
+      "generated_code": "def find_largest(arr):\n    largest = arr[0]\n    for num in arr:\n        if num > largest:\n            largest = num\n    return largest\n\narr = [2, 4, 8, 9, 10]\nlargest = find_largest(arr)\nprint(largest)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Contruct a python program that sorts an array of strings using BubbleSort algorithm.",
+      "generated_code": "def bubble_sort(arr):\n    n = len(arr)\n \n    # Traverse through all array elements\n    for i in range(n):\n \n        # Last i elements are already in place\n        for j in range(0, n-i-1):\n \n            # traverse the array from 0 to n-i-1\n            # Swap if the element found is greater\n            # than the next element\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n \n# Driver code to test above\narr = [\"Hello\", \"World\", \"Boo\", \"Yay\"]\nbubble_sort(arr)\nprint (\"Sorted array is:\")\nfor i in range(len(arr)):\n print (\"%s\" %arr[i]),",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    },
+    {
+      "instruction": "Create a program in Python that removes duplicates from a given array.",
+      "generated_code": "def remove_duplicates(arr):\n    result = []\n    for i in arr:\n        if i not in result:\n            result.append(i)\n    return result\n\narr = [1, 1, 2, 3, 4, 5, 5, 5]\nresult = remove_duplicates(arr)\nprint(result)",
+      "status": "success",
+      "error": null,
+      "required_libraries": [],
+      "used_libraries": [],
+      "library_match": null
+    }
+  ],
+  "base_summary": {
+    "total": 40,
+    "success_rate": 0.55,
+    "success": 22,
+    "syntax_error": 6,
+    "runtime_error": 11,
+    "timeout": 1,
+    "library_match_rate": 0.6666666666666666,
+    "library_checked_n": 6
+  },
+  "finetuned_summary": {
+    "total": 40,
+    "success_rate": 0.625,
+    "success": 25,
+    "syntax_error": 0,
+    "runtime_error": 14,
+    "timeout": 1,
+    "library_match_rate": 0.6666666666666666,
+    "library_checked_n": 6
+  }
+}
